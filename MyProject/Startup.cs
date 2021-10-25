@@ -7,34 +7,32 @@ using Microsoft.Extensions.DependencyInjection;
 using MyProject.Models;
 using Microsoft.AspNetCore.Identity;
 
-namespace MyProject
-{
-  public class Startup
-  {
-    public Startup(IWebHostEnvironment env)
-    {
+namespace MyProject {
+  public class Startup {
+    public Startup(IWebHostEnvironment env) {
       var builder = new ConfigurationBuilder()
         .SetBasePath(env.ContentRootPath)
         .AddJsonFile("appsettings.json");
       Configuration = builder.Build();
     }
 
-    public IConfigurationRoot Configuration { get; set; }
+    public IConfigurationRoot Configuration {
+      get;
+      set;
+    }
 
-    public void ConfigureServices(IServiceCollection services)
-    {
+    public void ConfigureServices(IServiceCollection services) {
       services.AddMvc();
 
       services.AddEntityFrameworkMySql()
-        .AddDbContext<MyProjectContext>(options => options
-        .UseMySql(Configuration["ConnectionStrings:DefaultConnection"], ServerVersion.AutoDetect(Configuration["ConnectionStrings:DefaultConnection"])));
-        
-      services.AddIdentity<ApplicationUser, IdentityRole>()
-        .AddEntityFrameworkStores<MyProjectContext>()
+        .AddDbContext <MyProjectContext> (options => options
+          .UseMySql(Configuration["ConnectionStrings:DefaultConnection"], ServerVersion.AutoDetect(Configuration["ConnectionStrings:DefaultConnection"])));
+
+      services.AddIdentity <ApplicationUser, IdentityRole> ()
+        .AddEntityFrameworkStores <MyProjectContext> ()
         .AddDefaultTokenProviders();
 
-      services.Configure<IdentityOptions>(options =>
-      {
+      services.Configure <IdentityOptions> (options => {
         options.Password.RequireDigit = false;
         options.Password.RequiredLength = 0;
         options.Password.RequireLowercase = false;
@@ -44,25 +42,22 @@ namespace MyProject
       });
     }
 
-    public void Configure(IApplicationBuilder app)
-    {
+    public void Configure(IApplicationBuilder app) {
       app.UseDeveloperExceptionPage();
 
-      app.UseAuthentication(); 
+      app.UseAuthentication();
 
       app.UseRouting();
 
       app.UseAuthorization();
 
-      app.UseEndpoints(routes =>
-      {
+      app.UseEndpoints(routes => {
         routes.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
       });
 
       app.UseStaticFiles();
-      
-      app.Run(async (context) =>
-      {
+
+      app.Run(async (context) => {
         await context.Response.WriteAsync("Hello World!");
       });
     }

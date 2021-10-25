@@ -1,15 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace MyProject.Controllers
-{
-    public class HomeController : Controller
-    {
+namespace MyProject.Controllers {
+  public class HomeController: Controller {
 
-      [HttpGet("/")]
-      public ActionResult Index()
-      {
-        return View();
-      }
-
+    [HttpGet("/")]
+    public ActionResult Index() {
+      return View();
     }
+
+  }
 }
