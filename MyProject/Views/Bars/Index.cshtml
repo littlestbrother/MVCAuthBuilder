@@ -1,0 +1,26 @@
+@{
+  Layout = "_Layout";
+}
+
+@using MyProject.Models;
+@model IEnumerable<MyProject.Models.Bar>
+
+<h1>Bars for @User.Identity.Name</h1>
+
+@if (Model.Any())
+{
+  <ul>
+    @foreach (Bar Bar in Model)
+    {
+      <li>@Html.ActionLink($"{Bar.Description}", "Details", new { id = Bar.BarId })</li>
+    }
+  </ul>
+} 
+else
+{
+  <h3>No Bars have been added yet!</h3>
+}
+
+<p>@Html.ActionLink("Add new Bar", "Create")</p>
+
+<p>@Html.ActionLink("Home", "Index", "Home")</p>

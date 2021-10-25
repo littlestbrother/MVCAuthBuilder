@@ -1,0 +1,21 @@
+@{
+  Layout = "_Layout";
+}
+
+@model MyProject.Models.Bar
+
+<h2>Add a Foo</h2>
+
+<h4>Add a Foo to this Bar: @Html.DisplayFor(model => model.Description)</h4>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.BarId)
+
+  <label for="FooId">Select Foo:</label>
+  @Html.DropDownList("FooId")
+
+  <input type="submit" value="Save" />
+}
+
+<p>@Html.ActionLink("Back to list", "Index")</p>

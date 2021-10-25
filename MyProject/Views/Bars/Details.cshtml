@@ -1,0 +1,35 @@
+@{
+  Layout = "_Layout";
+}
+
+@model MyProject.Models.Bar
+
+<h2>Bar Details</h2>
+<hr />
+<h3>@Html.DisplayNameFor(model => model.Description): @Html.DisplayFor(model => model.Description)</h3>
+
+@if(@Model.JoinEntities.Count == 0)
+{
+  <p>This Bar does not belong to any Foos</p>
+}
+else
+{
+  <h4>Foos the Bar belongs to:</h4>
+  <ul>
+  @foreach(var join in Model.JoinEntities)
+  {
+    <li>@join.Foo.Name</li>
+    @using (Html.BeginForm("DeleteFoo", "Bars"))
+    {
+      @Html.Hidden("joinId", @join.FooBarId)
+      <input type="submit" value="Delete"/>
+    }
+  }
+  </ul>
+}
+
+<p>@Html.ActionLink("Add a Foo", "AddFoo", new { id = Model.BarId })</p>
+
+<p>@Html.ActionLink("Back to list", "Index")</p>
+<p>@Html.ActionLink("Edit Bar", "Edit", new { id = Model.BarId })</p>
+<p>@Html.ActionLink("Delete Bar", "Delete", new { id = Model.BarId })</p>

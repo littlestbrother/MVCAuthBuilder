@@ -1,0 +1,19 @@
+@{
+  Layout = "_Layout";
+}
+
+@model MyProject.Models.Bar
+
+<h4>Add a new Bar</h4>
+
+@using (Html.BeginForm())
+{
+  <label for="Description">Description:</label>
+  @Html.TextBoxFor(model => model.Description)
+
+  <label for="FooId">Select Foo:</label>
+  @Html.DropDownList("FooId")
+
+  <input type="submit" value="Add new Bar" class="btn btn-default" />
+}
+<p>@Html.ActionLink("Show all Bars", "Index")</p>

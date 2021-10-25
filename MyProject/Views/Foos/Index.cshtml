@@ -1,0 +1,22 @@
+@{
+  Layout = "_Layout";
+}
+
+@using MyProject.Models;
+
+<h1>Foos</h1>
+
+@if (@Model.Count == 0)
+{
+  <h3>No Foos have been added yet!</h3>
+} 
+
+<ul>
+  @foreach(Foo Foo in Model)
+  {
+    <li>@Html.ActionLink($"{Foo.Name}", "Details", new { id = Foo.FooId })</li>
+  }
+</ul>
+
+<p>@Html.ActionLink("Add new Foo", "Create")</p>
+<p>@Html.ActionLink("Home", "Index", "Home")</p>
