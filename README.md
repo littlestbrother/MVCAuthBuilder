@@ -29,3 +29,7 @@ git clone https://github.com/littlestbrother/MVCAuthBuilder && cd MVCAuthBuilder
 ### That's it.
 
 The builder should automatically create the project and run the server. Navigate to: [http://localhost:5000/](http://localhost:5000/) to use it.
+
+### Bugs :/
+
+MacOS's bash shell interprets this code differently and will append `-e` onto all files four times whilst duplicating them! I'm also not sure how it will work on WSL or Git Bash).
