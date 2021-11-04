@@ -24,6 +24,7 @@ git clone https://github.com/littlestbrother/MVCAuthBuilder && cd MVCAuthBuilder
 
 🗂  SQL database name: db_name
 ```
+- Change "password" for your database in your appsettings.json to match the password for your database. 
 
 ### That's it.
 
